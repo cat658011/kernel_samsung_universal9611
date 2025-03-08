@@ -507,11 +507,6 @@ ifneq ($(KBUILD_SRC),)
 	    $(srctree) $(objtree) $(VERSION) $(PATCHLEVEL)
 endif
 
-ifneq ($(ONEUI),)
-KBUILD_CFLAGS += -DGRASS_ONEUI
-endif
-export ONEUI
-
 PLATFORM_VERSION := 12
 
 ifeq ($(DEVICE), gta4xl)

@@ -105,7 +105,7 @@ static struct delayed_work *p_ghost_check;
 
 //Features
 #define MMS_USE_NAP_MODE		0
-#ifdef GRASS_ONEUI
+#ifdef CONFIG_ONEUI
 #define MMS_SUPPORT_DEX			1
 #endif
 #ifndef CONFIG_SAMSUNG_PRODUCT_SHIP

@@ -816,7 +816,7 @@ static int mms_alert_handler_pocket_mode_state(struct mms_ts_info *info, u8 data
 
 static int mms_alert_handler_proximity_state(struct mms_ts_info *info, u8 data)
 {
-#ifndef GRASS_ONEUI
+#ifndef CONFIG_ONEUI
 	bool report = false;
 #endif
 	if (!info->dtdata->support_protos) {
@@ -825,7 +825,7 @@ static int mms_alert_handler_proximity_state(struct mms_ts_info *info, u8 data)
 			return 0;
 		}
 	}
-#ifndef GRASS_ONEUI
+#ifndef CONFIG_ONEUI
 	report |= info->lowpower_mode;
 	if (info->touch_count > 0) {
 		int i;
@@ -2019,7 +2019,7 @@ static struct i2c_driver mms_driver = {
 #ifdef CONFIG_PM
 		.pm = &mms_dev_pm_ops,
 #endif
-#ifdef GRASS_ONEUI
+#ifdef CONFIG_ONEUI
 		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
 #endif
 	},
