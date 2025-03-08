@@ -1429,7 +1429,7 @@ static void mms_read_info_work(struct work_struct *work)
 	mms_run_rawdata(info, true);
 	info->info_work_done = true;
 }
-#ifdef MMS_SUPPORT_DEX
+#ifdef CONFIG_MMS_SUPPORT_DEX
 static void mms_set_input_prop_pad(struct mms_ts_info *info, struct input_dev *dev)
 {
 	static char ist_phys[64] = { 0 };
@@ -1680,7 +1680,7 @@ static int mms_probe(struct i2c_client *client, const struct i2c_device_id *id)
 
 	mms_init_config(info);
 	mms_config_input(info);
-#ifdef MMS_SUPPORT_DEX
+#ifdef CONFIG_MMS_SUPPORT_DEX
 	info->input_dev_pad = input_allocate_device();
 	if (!info->input_dev_pad) {
 		input_err(true, &client->dev, "%s: allocate device err!\n", __func__);
@@ -1815,7 +1815,7 @@ err_test_dev_create:
 	mms_disable(info);
 	free_irq(info->irq, info);
 err_request_irq:
-#ifdef MMS_SUPPORT_DEX
+#ifdef CONFIG_MMS_SUPPORT_DEX
 	input_unregister_device(info->input_dev_pad);
 	info->input_dev_pad = NULL;
 err_input_pad_register_device:
@@ -1892,7 +1892,7 @@ static int mms_remove(struct i2c_client *client)
 		input_mt_destroy_slots(info->input_dev_proximity);
 		input_unregister_device(info->input_dev_proximity);
 	}
-#ifdef MMS_SUPPORT_DEX
+#ifdef CONFIG_MMS_SUPPORT_DEX
 	input_mt_destroy_slots(info->input_dev_pad);
 	input_unregister_device(info->input_dev_pad);
 #endif
